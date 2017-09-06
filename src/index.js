@@ -7,6 +7,8 @@ import registerServiceWorker from './registerServiceWorker'
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers'
 import { Provider } from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'normalize.css'
 
 const logger = store => next => action => {
   console.group(action.type)

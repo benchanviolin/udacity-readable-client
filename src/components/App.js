@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import '../css/App.css'
 import * as ReadableAPI from '../utils/ReadableAPI'
 import { getCategories } from '../actions'
+import { Button } from 'reactstrap'; //http://reactstrap.github.io/
 
 class App extends Component {
   componentDidMount() {
@@ -15,17 +16,17 @@ class App extends Component {
     const { category } = this.props;
 
     return (
-      <div className='container'>
-
-        <div className='nav'>
-          <h1 className='header'>Readable by Ben Chan</h1>
-          {category && category.rows && (category.rows.map((category, key) => {
-            return <button
-              key={key}
-            >{category.name}</button>
-          }))}
-        </div>
-
+      <div className="nav">
+        <div className="nav-header"></div>
+        <label className="nav-label">Choose a category:</label>
+        {category && category.rows && (category.rows.map((category, key) => {
+          return <Button
+            key={key}
+            className="nav-button"
+            color="primary"
+            size="large"
+          >{category.name}</Button>
+        }))}
       </div>
     );
   }
