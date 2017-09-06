@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
-import '../css/App.css';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import logo from '../logo.svg'
+import '../css/App.css'
 import * as ReadableAPI from '../utils/ReadableAPI'
+import { getCategories } from '../actions'
 
 class App extends Component {
   componentDidMount() {
     ReadableAPI.getCategories().then((categories) => {
-      console.log(categories);
       return { categories }
     })
   }
@@ -25,4 +26,19 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps ({ categories }) {
+  return {
+    categories
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    getCategories: () => dispatch(getCategories())
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
