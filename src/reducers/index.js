@@ -9,7 +9,7 @@ function category (state = initialCategoryState, action) {
     case GET_CATEGORIES :
       return {
         ...state,
-        categories: action.categories
+        rows: action.categories
       }
     default :
       return state

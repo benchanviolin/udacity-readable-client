@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import logo from '../logo.svg'
 import '../css/App.css'
 import * as ReadableAPI from '../utils/ReadableAPI'
 import { getCategories } from '../actions'
@@ -12,23 +11,29 @@ class App extends Component {
     })
   }
   render() {
+    console.log('Props', this.props);
+    const { category } = this.props;
+
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className='container'>
+
+        <div className='nav'>
+          <h1 className='header'>Readable by Ben Chan</h1>
+          {category && category.rows && (category.rows.map((category, key) => {
+            return <button
+              key={key}
+            >{category.name}</button>
+          }))}
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
       </div>
     );
   }
 }
 
-function mapStateToProps ({ categories }) {
+function mapStateToProps ({ category }) {
   return {
-    categories
+    category
   }
 }
 
