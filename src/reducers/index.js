@@ -8,7 +8,8 @@ function category (state = initialCategoryState, action) {
   switch (action.type) {
     case GET_CATEGORIES :
       return {
-        ...state
+        ...state,
+        categories: action.categories
       }
     default :
       return state

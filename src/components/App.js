@@ -8,7 +8,7 @@ import { getCategories } from '../actions'
 class App extends Component {
   componentDidMount() {
     ReadableAPI.getCategories().then((categories) => {
-      return { categories }
+      this.props.setCategories(categories);
     })
   }
   render() {
@@ -34,7 +34,7 @@ function mapStateToProps ({ categories }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getCategories: () => dispatch(getCategories())
+    setCategories: (categories) => dispatch(getCategories(categories))
   }
 }
 
