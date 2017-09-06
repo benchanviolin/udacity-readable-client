@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../css/App.css';
+import * as ReadableAPI from '../utils/ReadableAPI'
 
 class App extends Component {
+  componentDidMount() {
+    ReadableAPI.getCategories().then((categories) => {
+      console.log(categories);
+      return { categories }
+    })
+  }
   render() {
     return (
       <div className="App">
