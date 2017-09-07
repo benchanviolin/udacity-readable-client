@@ -1,0 +1,22 @@
+.menu-navbar {
+  background-color: #333;
+}
+
+.menu-home,
+.menu-home:visited,
+.menu-category,
+.menu-category:visited {
+  color: #FFF;
+  width: 100%;
+  padding: 10px;
+}
+
+.menu-home:hover,
+.menu-home:link,
+.menu-home:active,
+.menu-category:hover,
+.menu-category:link,
+.menu-category:active {
+  color: #999;
+  text-decoration: none;
+}

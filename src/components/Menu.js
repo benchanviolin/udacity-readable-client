@@ -1,15 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar, NavbarToggler, Collapse, Nav, NavItem } from 'reactstrap';
+import '../css/Menu.css'
 
 const Menu = (props) => {
   const { category, collapsed, parent } = props;
   return (
-    <Navbar color="faded" light toggleable>
+    <Navbar color="dark" className="menu-navbar" toggleable>
      <NavbarToggler right onClick={() => {parent.toggleNavbar && (parent.toggleNavbar())}} />
      <Link
        to="/"
-       className="nav-home"
+       className="menu-home"
      >Readable by Ben Chan</Link>
      <Collapse isOpen={!collapsed} navbar>
        <Nav className="ml-auto" navbar>
@@ -17,7 +18,7 @@ const Menu = (props) => {
            return <NavItem key={key}>
              <Link
                to={'/'+category.name}
-               className="nav-category"
+               className="menu-category"
              >{category.name}</Link>
            </NavItem>
          }))}
