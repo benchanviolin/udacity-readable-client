@@ -6,7 +6,7 @@ import * as ReadableAPI from '../utils/ReadableAPI'
 import { getCategories } from '../actions'
 import Menu from '../components/Menu'
 import Root from '../components/Root'
-import Category from '../components/Category'
+import CategoryView from '../components/CategoryView'
 
 class App extends Component {
   componentDidMount() {
@@ -21,16 +21,10 @@ class App extends Component {
         <div>
           <Menu />
           <Route exact path='/' component={Root} />
-          <Route exact path='/:category' component={Category} />
+          <Route exact path='/:category' component={CategoryView} />
         </div>
       </BrowserRouter>
     );
-  }
-}
-
-function mapStateToProps ({ collapsed, category }) {
-  return {
-    category
   }
 }
 
@@ -41,6 +35,6 @@ function mapDispatchToProps (dispatch) {
 }
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(App)

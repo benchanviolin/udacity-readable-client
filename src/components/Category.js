@@ -6,22 +6,12 @@ import Post from './Post.js'
 
 class Category extends Component {
   render() {
-    const category = this.props.match.params.category;
-    const categoryClassName = 'category-header category-header-' + category;
-    const title = category;
+    //const { category } = this.props;
     //console.log('Props', this.props);
 
     return (
       <div>
         <Container fluid={true}>
-          <Row>
-            <Col
-              xs={{ size: 12 }}
-              className={categoryClassName}
-            >
-            {title}
-            </Col>
-          </Row>
           <Row className="category-post-row">
             <Col
               xs={{ size: 12 }}

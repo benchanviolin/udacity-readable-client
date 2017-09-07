@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Navbar, NavbarToggler, Collapse, Nav, NavItem } from 'reactstrap';
 import '../css/Menu.css'
-import { getCollapsed, getCategories } from '../actions'
+import { getCollapsed } from '../actions'
 
 class Menu extends Component {
   toggleNavbar() {
@@ -24,6 +24,12 @@ class Menu extends Component {
        >Readable by Ben Chan</Link>
        <Collapse isOpen={!collapsed} navbar>
          <Nav className="ml-auto" navbar>
+           <NavItem>
+             <Link
+               to="/"
+               className="menu-category"
+             >all categories</Link>
+           </NavItem>
            {category && category.rows && (category.rows.map((category, key) => {
              return <NavItem key={key}>
                <Link
@@ -49,7 +55,6 @@ function mapStateToProps ({ collapsed, category }) {
 function mapDispatchToProps (dispatch) {
   return {
     setCollapsed: (collapsed) => dispatch(getCollapsed(collapsed)),/* It feels silly to put this in the store, but the rubric says to do so! */
-    setCategories: (categories) => dispatch(getCategories(categories))
   }
 }
 
