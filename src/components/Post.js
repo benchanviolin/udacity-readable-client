@@ -12,8 +12,17 @@ class Post extends Component {
       <div>
         <Card>
           <CardBlock>
-            <CardTitle>{title}</CardTitle>
-            <CardSubtitle>{'By '+author}</CardSubtitle>
+            <div className="post-vote">
+              <div>
+                Votes: -5
+              </div>
+              <div>
+                <Button className="post-vote-button">+</Button>
+                <Button>-</Button>
+              </div>
+            </div>
+            <CardTitle className="post-title">{title}</CardTitle>
+            <CardSubtitle className="post-author">{'By '+author}</CardSubtitle>
             <br></br>
             <CardText>{body}</CardText>
             <Button className="float-left">Edit</Button>

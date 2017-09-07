@@ -24,3 +24,7 @@
 .category-post-row {
   margin: 30px 0 0 0 !important;
 }
+
+.category-post-after {
+  height: 40px;
+}

@@ -29,10 +29,35 @@ class Category extends Component {
               md={{ size: 4 }}
             >
               <Post
-                title="Corn"
+                title="Corn is the most magical fruit of all a a a a"
                 author="Ben Chan"
                 body="Eat corn because it is the BEST food ever!"
               />
+              <div className="category-post-after"></div>
+            </Col>
+            <Col
+              xs={{ size: 12 }}
+              sm={{ size: 6 }}
+              md={{ size: 4 }}
+            >
+              <Post
+                title="Corn is the most magical fruit of all a a a a"
+                author="Ben Chan"
+                body="Eat corn because it is the BEST food ever!"
+              />
+              <div className="category-post-after"></div>
+            </Col>
+            <Col
+              xs={{ size: 12 }}
+              sm={{ size: 6 }}
+              md={{ size: 4 }}
+            >
+              <Post
+                title="Corn is the most magical fruit of all a a a a"
+                author="Ben Chan"
+                body="Eat corn because it is the BEST food ever!"
+              />
+              <div className="category-post-after"></div>
             </Col>
           </Row>
         </Container>
