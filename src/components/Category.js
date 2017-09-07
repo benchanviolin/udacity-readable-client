@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap';
+import '../css/Category.css';
 
 class Category extends Component {
   render() {
-    const { match } = this.props;
+    const category = this.props.match.params.category;
+    const className = 'category-header category-header-' + category;
+    const title = category;
     //console.log('Props', this.props);
 
     return (
@@ -13,9 +16,9 @@ class Category extends Component {
           <Row>
             <Col
               xs={{ size: 12 }}
-              className="category-header"
+              className={className}
             >
-            {match.params.category}
+            {title}
             </Col>
           </Row>
         </Container>

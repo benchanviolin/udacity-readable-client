@@ -14,15 +14,13 @@ body {
   line-height: 1.5;
 }
 
-/* App.js */
-
 .nav-home,
 .nav-home:visited,
 .nav-category,
 .nav-category:visited {
   color: #666;
-  width: 200px;
-  margin: 10px;
+  width: 100%;
+  padding: 10px;
 }
 
 .nav-home:hover,

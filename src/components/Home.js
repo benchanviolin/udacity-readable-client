@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'; //http://reactstrap.github.io/
+import '../css/Home.css'
 
 const Home = () => (
   <Container fluid={true}>

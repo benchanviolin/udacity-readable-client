@@ -1,0 +1,22 @@
+.category-header {
+  background-color: #000;
+  color: #FFF;
+  font: bold 1.2em arial, sans-serif;
+  padding: 10px;
+  text-align: center;
+}
+
+.category-header-react {
+  background-color: #2872BE;
+  color: #FFF;
+}
+
+.category-header-redux {
+  background-color: #218E63;
+  color: #FFF;
+}
+
+.category-header-udacity {
+  background-color: #951919;
+  color: #FFF;
+}

@@ -35,10 +35,8 @@ class App extends Component {
             category={this.props.category}
             parent={this /* TODO: How do I reference toggleNavbar from inside the Menu component without referencing parent like this?  What's best practice?*/}
           />
-
-          <Route exact path='/:category' component={Category}></Route>
-
           <Route exact path='/' component={Home}></Route>
+          <Route exact path='/:category' component={Category}></Route>          
         </div>
       </BrowserRouter>
     );
