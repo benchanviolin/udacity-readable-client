@@ -15,8 +15,7 @@ class Category extends Component {
           <Row className="category-post-row">
             <Col
               xs={{ size: 12 }}
-              sm={{ size: 6 }}
-              md={{ size: 4 }}
+              md={{ size: 6 }}
             >
               <Post
                 title="Corn is the most magical fruit of all a a a a"

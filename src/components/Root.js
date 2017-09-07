@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Container, Row, Col } from 'reactstrap';
 import '../css/Root.css'
+import '../css/Category.css'
 import Filter from './Filter'
 import Post from './Post'
 
@@ -10,12 +12,22 @@ class Root extends Component {
     return (
       <div>
         <Filter />
-        {post && post.rows && (post.rows.map((post, key) => {
-          return <Post
-            key={key}
-            post={post}
-          />
-        }))}
+        <Container fluid={true}>
+          <Row className="category-post-row">
+            {post && post.rows && (post.rows.map((post, key) => {
+              return <Col
+                key={key}
+                xs={{ size: 12 }}
+                md={{ size: 6 }}
+              >
+                <Post
+                  data={post}
+                />
+                <div className="category-post-after"></div>
+              </Col>
+            }))}
+          </Row>
+        </Container>
       </div>
     )
   }

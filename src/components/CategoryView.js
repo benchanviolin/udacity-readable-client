@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../css/Root.css'
+import '../css/Category.css'
 import { Container, Row, Col } from 'reactstrap';
 import Filter from './Filter'
 import Category from './Category'
@@ -15,7 +15,7 @@ class CategoryView extends Component {
     }
     const categoryClassName = 'category-header category-header-' + category;
     const title = category;
-    
+
     return (
       <div>
         <Filter />

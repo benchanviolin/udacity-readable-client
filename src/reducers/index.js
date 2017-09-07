@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 
 import {
   GET_COLLAPSED,
-  GET_CATEGORIES
+  GET_CATEGORIES,
+  GET_POSTS
 } from '../actions'
 
 const initialCollapsedState = true;
@@ -30,7 +31,22 @@ function category (state = initialCategoryState, action) {
   }
 }
 
+const initialPostState = {}
+
+function post (state = initialPostState, action) {
+  switch (action.type) {
+    case GET_POSTS :
+      return {
+        ...state,
+        rows: action.posts
+      };
+    default :
+      return state;
+  }
+}
+
 export default combineReducers({
   collapsed,
-  category
+  category,
+  post
 })
