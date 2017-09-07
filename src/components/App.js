@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import '../css/App.css'
 import * as ReadableAPI from '../utils/ReadableAPI'
 import { getCollapsed, getCategories } from '../actions'
-import { Container, Row, Col } from 'reactstrap'; //http://reactstrap.github.io/
 import Menu from '../components/Menu'
+import Home from '../components/Home'
 import Category from '../components/Category'
 
 class App extends Component {
@@ -33,23 +33,12 @@ class App extends Component {
               this.props.collapsed
             }
             category={this.props.category}
-            parent={this}
+            parent={this /* TODO: How do I reference toggleNavbar from inside the Menu component without referencing parent like this?  What's best practice?*/}
           />
 
           <Route exact path='/:category' component={Category}></Route>
 
-          <Route exact path='/' render={() => (
-            <Container fluid={true}>
-              <Row>
-                <Col
-                  xs={{ size: 12 }}
-                  className="home-readme text-right"
-                >
-                Click on a category above to begin!
-                </Col>
-              </Row>
-            </Container>
-          )}/>
+          <Route exact path='/' component={Home}></Route>
         </div>
       </BrowserRouter>
     );
