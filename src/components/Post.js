@@ -30,6 +30,7 @@ class Post extends Component {
             <CardTitle className="post-title">{title}</CardTitle>
             <CardSubtitle className="post-author">
               <span>{author+' ['+category+']'}</span>
+              &nbsp;-&nbsp;
               <Timestamp time={timestamp} format="full" />
             </CardSubtitle>
             <br></br>
