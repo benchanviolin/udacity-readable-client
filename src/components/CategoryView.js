@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import '../css/Category.css'
 import { Container, Row, Col } from 'reactstrap';
@@ -6,13 +7,11 @@ import Filter from './Filter'
 import Category from './Category'
 
 class CategoryView extends Component {
+  static PropTypes = {
+    match: PropTypes.object.isRequired
+  }
   render () {
-    let category;
-    if (this.props.match && this.props.match.params && this.props.match.params.category) {
-      category = this.props.match.params.category;
-    } else {
-      category = this.props.category;
-    }
+    const category = this.props.match.params.category;
     const categoryClassName = 'category-header category-header-' + category;
     const title = category;
 
