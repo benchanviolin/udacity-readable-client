@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import '../css/App.css'
 import * as ReadableAPI from '../utils/ReadableAPI'
@@ -28,7 +28,12 @@ class App extends Component {
       <div>
         <Navbar color="faded" light toggleable>
          <NavbarToggler right onClick={() => {this.toggleNavbar()}} />
-         <NavbarBrand href="/">Click a category on the right!</NavbarBrand>
+         <NavbarBrand>
+           <Link
+             className="nav-home"
+             to="/"
+           >Readable by Ben Chan</Link>
+         </NavbarBrand>
          <Collapse isOpen={!this.state.collapsed} navbar>
            <Nav className="ml-auto" navbar>
              {category && category.rows && (category.rows.map((category, key) => {
@@ -40,16 +45,19 @@ class App extends Component {
          </Collapse>
         </Navbar>
         <Route exact path='/' render={() => (
-          <Container>
+          <Container fluid={true}>
             <Row>
-              <Col>Hi</Col>
+              <Col
+                xs={{ size: 12 }}
+                className="home-readme text-right"
+              >
+              Click on a category above to begin!
+              </Col>
             </Row>
           </Container>
         )}/>
-        <Route path='/category' render={() => (
-          <Container></Container>
-        )}/>
-      </div>
+
+        </div>
     );
   }
 }
