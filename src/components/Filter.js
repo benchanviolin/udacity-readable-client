@@ -1,18 +1,18 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'; //http://reactstrap.github.io/
-import '../css/Home.css'
+import '../css/Filter.css'
 
-const Home = () => (
+const Filter = () => (
   <Container fluid={true}>
     <Row>
       <Col
         xs={{ size: 12 }}
-        className="home-readme text-right"
+        className="filter-body text-right"
       >
-      Click on a category above to begin!
+      [ FILTERS HERE ]
       </Col>
     </Row>
   </Container>
 )
 
-export default Home
+export default Filter

@@ -5,7 +5,7 @@ import '../css/App.css'
 import * as ReadableAPI from '../utils/ReadableAPI'
 import { getCollapsed, getCategories } from '../actions'
 import Menu from '../components/Menu'
-import Home from '../components/Home'
+import Root from '../components/Root'
 import Category from '../components/Category'
 
 class App extends Component {
@@ -35,8 +35,8 @@ class App extends Component {
             category={this.props.category}
             parent={this /* TODO: How do I reference toggleNavbar from inside the Menu component without referencing parent like this?  What's best practice?*/}
           />
-          <Route exact path='/' component={Home}></Route>
-          <Route exact path='/:category' component={Category}></Route>          
+          <Route exact path='/' component={Root}></Route>
+          <Route exact path='/:category' component={Category}></Route>
         </div>
       </BrowserRouter>
     );
