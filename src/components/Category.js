@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 //import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap';
 import '../css/Category.css';
+import Post from './Post.js'
 
 class Category extends Component {
   render() {
     const category = this.props.match.params.category;
-    const className = 'category-header category-header-' + category;
+    const categoryClassName = 'category-header category-header-' + category;
     const title = category;
     //console.log('Props', this.props);
 
@@ -16,12 +17,26 @@ class Category extends Component {
           <Row>
             <Col
               xs={{ size: 12 }}
-              className={className}
+              className={categoryClassName}
             >
             {title}
             </Col>
           </Row>
+          <Row className="category-post-row">
+            <Col
+              xs={{ size: 12 }}
+              sm={{ size: 6 }}
+              md={{ size: 4 }}
+            >
+              <Post
+                title="Corn"
+                author="Ben Chan"
+                body="Eat corn because it is the BEST food ever!"
+              />
+            </Col>
+          </Row>
         </Container>
+
       </div>
     )
   }

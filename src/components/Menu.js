@@ -6,7 +6,7 @@ import '../css/Menu.css'
 const Menu = (props) => {
   const { category, collapsed, parent } = props;
   return (
-    <Navbar color="dark" className="menu-navbar" toggleable>
+    <Navbar color="dark" light className="menu-navbar" toggleable>
      <NavbarToggler right onClick={() => {parent.toggleNavbar && (parent.toggleNavbar())}} />
      <Link
        to="/"

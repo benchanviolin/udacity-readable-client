@@ -1,5 +1,5 @@
 .menu-navbar {
-  background-color: #333;
+  background-color: #999;
 }
 
 .menu-home,
@@ -17,6 +17,6 @@
 .menu-category:hover,
 .menu-category:link,
 .menu-category:active {
-  color: #999;
+  color: #BBB;
   text-decoration: none;
 }

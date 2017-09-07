@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom'
-import { Container, Row, Col } from 'reactstrap';
+import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import '../css/Post.css';
 
 class Post extends Component {
   render() {
-    const className = 'post-header';
+    const { title, author, body } = this.props;
     //console.log('Props', this.props);
 
     return (
       <div>
-        <Container fluid={true}>
-          <Row>
-            <Col
-              xs={{ size: 12 }}
-              className={className}
-            >
-            POST
-            </Col>
-          </Row>
-        </Container>
+        <Card>
+          <CardBlock>
+            <CardTitle>{title}</CardTitle>
+            <CardSubtitle>{'By '+author}</CardSubtitle>
+            <br></br>
+            <CardText>{body}</CardText>
+            <Button className="float-left">Edit</Button>
+            <Button className="float-right">Delete</Button>
+          </CardBlock>
+        </Card>
       </div>
     )
   }
