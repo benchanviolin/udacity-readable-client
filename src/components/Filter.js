@@ -7,7 +7,7 @@ const Filter = () => (
     <Row>
       <Col
         xs={{ size: 12 }}
-        className="filter-body text-right"
+        className="filter-body text-center"
       >
       [ FILTERS HERE ]
       </Col>

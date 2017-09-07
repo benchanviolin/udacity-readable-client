@@ -7,10 +7,17 @@ import '../css/Post.css';
 
 class Post extends Component {
   static propTypes = {
+    readOnly: PropTypes.bool,
     data: PropTypes.object.isRequired
   }
-
+  abbreviate(text) {
+    if (text.length > 50) {
+      return text.substring(0, 50) + '...';
+    }
+    return text;
+  }
   render() {
+    const readOnly = this.props.readOnly !== undefined ? this.props.readOnly : true;
     const { title, author, body, category, voteScore, timestamp } = this.props.data;
     //console.log('Props', this.props);
 
@@ -22,10 +29,12 @@ class Post extends Component {
               <div>
                 Votes: {voteScore}
               </div>
-              <div>
-                <Button className="post-vote-button">+</Button>
-                <Button>-</Button>
-              </div>
+              {!readOnly && (
+                <div>
+                  <Button className="post-vote-button">+</Button>
+                  <Button>-</Button>
+                </div>
+              )}
             </div>
             <CardTitle className="post-title">{title}</CardTitle>
             <CardSubtitle className="post-author">
@@ -34,9 +43,19 @@ class Post extends Component {
               <Timestamp time={timestamp} format="full" />
             </CardSubtitle>
             <br></br>
-            <CardText>{body}</CardText>
-            <Button className="float-left">Edit</Button>
-            <Button className="float-right">Delete</Button>
+            {readOnly
+              ? <CardText>{this.abbreviate(body)}</CardText>
+              : <CardText>{body}</CardText>
+            }
+            {readOnly
+              ? <div>
+                  <Button className="float-right">View</Button>
+                </div>
+              : <div>
+                  <Button className="float-left">Edit</Button>
+                  <Button className="float-right">Delete</Button>
+                </div>
+            }
           </CardBlock>
         </Card>
       </div>

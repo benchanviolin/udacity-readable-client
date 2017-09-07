@@ -19,6 +19,7 @@ class CategoryView extends Component {
     return (
       <div>
         <Filter />
+        <div className="category-view-space"></div>
         <Container fluid={true}>
           <Row>
             <Col
