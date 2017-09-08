@@ -10,7 +10,7 @@ class CategoryView extends Component {
     match: PropTypes.object.isRequired
   }
   render () {
-    const category = this.props.match.params.category;
+    const category = this.props.match.path.slice(1); /* TODO: Can you explain a better way to detect the active category besides taking the URL and removing the leading / ? */
     const categoryClassName = 'category-header category-header-' + category;
     const title = category;
 
@@ -26,7 +26,7 @@ class CategoryView extends Component {
             {title}
             </Col>
           </Row>
-          </Container>
+        </Container>
         <Category category={category} />
       </div>
     )

@@ -34,6 +34,7 @@ class Menu extends Component {
              return <NavItem key={key}>
                <Link
                  to={'/'+category.name}
+                 id={category.name}
                  className="menu-category"
                >{category.name}</Link>
              </NavItem>

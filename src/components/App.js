@@ -23,11 +23,21 @@ class App extends Component {
           <Menu />
           <Filter />
           <Route exact path="/" component={Root} />
-          <Route exact path="/:category" component={CategoryView} />
+          {this.props.category && this.props.category.rows && (
+            this.props.category.rows.map((category, key) => (
+              <Route key={key} exact path={'/' + category.path} component={CategoryView} />
+            ))
+          )}
           <Route exact path="/:category/:postId" component={PostView} />
         </div>
       </BrowserRouter>
     );
+  }
+}
+
+function mapStateToProps ({ category }) {
+  return {
+    category
   }
 }
 
@@ -39,6 +49,6 @@ function mapDispatchToProps (dispatch) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App)

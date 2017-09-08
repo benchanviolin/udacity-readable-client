@@ -16,7 +16,8 @@
 .menu-home:active,
 .menu-category:hover,
 .menu-category:link,
-.menu-category:active {
+.menu-category:active,
+.menu-category-active {
   color: #BBB;
   text-decoration: none;
 }

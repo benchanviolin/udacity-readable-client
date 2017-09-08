@@ -14,7 +14,7 @@ class Category extends Component {
       <div>
         <Container fluid={true}>
           <Row className="category-post-row">
-            {post && post.rows && (post.rows.filter(post => post.category !== category))
+            {post && post.rows && (post.rows.filter(post => post.category == category))
               .map((post, key) => {
               return <Col
                 key={key}
