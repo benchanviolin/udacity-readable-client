@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
 import '../css/Root.css'
 import '../css/Category.css'
-import Filter from './Filter'
 import Post from './Post'
 
 class Root extends Component {
@@ -11,7 +10,6 @@ class Root extends Component {
     const { post } = this.props;
     return (
       <div>
-        <Filter />
         <Container fluid={true}>
           <Row className="category-post-row">
             {post && post.rows && (post.rows.map((post, key) => {

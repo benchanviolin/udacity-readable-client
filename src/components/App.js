@@ -8,6 +8,7 @@ import Menu from '../components/Menu'
 import Root from '../components/Root'
 import CategoryView from '../components/CategoryView'
 import PostView from '../components/PostView'
+import Filter from '../components/Filter'
 
 class App extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Menu />
+          <Filter />
           <Route exact path="/" component={Root} />
           <Route exact path="/:category" component={CategoryView} />
           <Route exact path="/:category/:postId" component={PostView} />

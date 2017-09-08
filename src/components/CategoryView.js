@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import '../css/Category.css'
 import { Container, Row, Col } from 'reactstrap';
-import Filter from './Filter'
 import Category from './Category'
 
 class CategoryView extends Component {
@@ -17,7 +16,6 @@ class CategoryView extends Component {
 
     return (
       <div>
-        <Filter />
         <div className="category-view-space"></div>
         <Container fluid={true}>
           <Row>
