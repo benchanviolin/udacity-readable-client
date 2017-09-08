@@ -10,10 +10,11 @@ import * as ReadableAPI from '../utils/ReadableAPI'
 
 class Post extends Component {
   static propTypes = {
-    readOnly: PropTypes.bool,
+    summaryView: PropTypes.bool,
     data: PropTypes.object.isRequired
   }
   componentDidMount() {
+    /* When this post is loaded directly by URL, Store.post may not be available yet.  But it should re-render when post does become available, then it will call this. */
     ReadableAPI.getCommentsByPostId(this.props.data.id).then((comments) => { this.props.setCommentsByPostId(this.props.data.id, comments); });
   }
   abbreviate(text) {
@@ -23,7 +24,7 @@ class Post extends Component {
     return text;
   }
   render() {
-    const readOnly = this.props.readOnly !== undefined ? this.props.readOnly : true;
+    const summaryView = this.props.summaryView !== undefined ? this.props.summaryView : true;
     const { id, title, author, body, category, voteScore, timestamp } = this.props.data;
     //console.log('Props', this.props);
 
@@ -47,11 +48,11 @@ class Post extends Component {
               <Timestamp time={timestamp} format="full" />
             </CardSubtitle>
             <br></br>
-            {readOnly
+            {summaryView
               ? <CardText>{this.abbreviate(body)}</CardText>
               : <CardText>{body}</CardText>
             }
-            {readOnly && (
+            {summaryView && (
               <div className="post-buttons-left">
                 <Link
                   to={'/' + category + '/' + id}

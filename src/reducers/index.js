@@ -54,6 +54,7 @@ function comment (state = initialCommentState, action) {
       return {
         ...state,
         rows: {
+          ...state.rows,
           [action.postId]: {
             comments: action.comments
           }

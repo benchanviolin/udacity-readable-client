@@ -10,20 +10,45 @@ class PostView extends Component {
     match: PropTypes.object.isRequired
   }
   render () {
-    console.log(this.props);
     const postId = this.props.match.params.postId;
+    const { post } = this.props;
+    let readyToRenderPost = false;
+
+    /* find current post, accounting for this being loaded before store is fully initialized */
+    let data = {};
+    if (post && post.rows) {
+      const currentPost = post.rows.filter(post => post.id === postId);
+      if (currentPost && currentPost.length > 0) {
+        data = currentPost[0];
+        readyToRenderPost = true;
+      }
+    }
 
     return (
       <div>
-        {postId}
+        <Container fluid={true}>
+          <Row className="category-post-row">
+            <Col
+              xs={{ size: 12 }}
+            >
+              {readyToRenderPost && (
+                <Post
+                  id={postId}
+                  summaryView={false}
+                  data={data}
+                />
+              )}
+          </Col>
+          </Row>
+        </Container>
       </div>
     )
   }
 }
 
-function mapStateToProps ({ postView }) {
+function mapStateToProps ({ post }) {
   return {
-    postView
+    post
   }
 }
 
