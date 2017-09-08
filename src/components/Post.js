@@ -26,6 +26,7 @@ class Post extends Component {
   render() {
     const summaryView = this.props.summaryView !== undefined ? this.props.summaryView : true;
     const { id, title, author, body, category, voteScore, timestamp } = this.props.data;
+    const commentCount = this.props.comment && this.props.comment.rows && this.props.comment.rows[id] && this.props.comment.rows[id].comments ? this.props.comment.rows[id].comments.length : 0;
     //console.log('Props', this.props);
 
     return (
@@ -64,6 +65,9 @@ class Post extends Component {
               <Button className="post-button">Edit</Button>
               <Button className="post-button">Delete</Button>
             </div>
+            <div className="clearfix"></div>
+            <br></br>
+            <div className="post-comment-count">Comments: {commentCount}</div>
           </CardBlock>
         </Card>
       </div>
@@ -71,9 +75,10 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps ({ post }) {
+function mapStateToProps ({ post, comment }) {
   return {
-    post
+    post,
+    comment
   }
 }
 

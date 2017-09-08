@@ -31,6 +31,10 @@
   width: 88px;
 }
 
+.post-comment-count {
+  float: right;
+}
+
 @media screen and (max-width: 395px) {
   .post-buttons-left,
   .post-buttons-right {

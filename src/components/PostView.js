@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import '../css/Post.css'
 import { Container, Row, Col } from 'reactstrap';
 import Post from './Post'
@@ -19,35 +20,45 @@ class PostView extends Component {
   render () {
     const postId = this.props.match.params.postId;
     const { post } = this.props;
-    let readyToRenderPost = false;
+    let readyToRender = false;
 
     /* find current post, accounting for this being loaded before store is fully initialized */
+    /* TODO: Can you explain a better way to do this? */
     let data = {};
     if (post && post.rows) {
       const currentPost = post.rows.filter(post => post.id === postId);
       if (currentPost && currentPost.length > 0) {
         data = currentPost[0];
-        readyToRenderPost = true;
+        readyToRender = true;
       }
     }
 
     return (
       <div>
-        <Container fluid={true}>
-          <Row className="category-post-row">
-            <Col
-              xs={{ size: 12 }}
-            >
-              {readyToRenderPost && (
+        {readyToRender && (
+          <Container fluid={true}>
+            <Row className="category-post-row">
+              <Col
+                xs={{ size: 12 }}
+              >
+              <Link
+                to={'/' + data.category}
+              >Back to {data.category}</Link>
+              </Col>
+            </Row>
+            <Row className="category-post-row">
+              <Col
+                xs={{ size: 12 }}
+              >
                 <Post
                   id={postId}
                   summaryView={false}
                   data={data}
                 />
-              )}
-          </Col>
-          </Row>
-        </Container>
+              </Col>
+            </Row>
+          </Container>
+        )}
       </div>
     )
   }
