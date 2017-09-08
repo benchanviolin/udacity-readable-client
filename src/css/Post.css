@@ -18,5 +18,22 @@
   margin: 0 10px 0 0 !important;
 }
 
+.post-buttons-left {
+  float: left;
+}
+
+.post-buttons-right {
+  float: right;
+}
+
 .post-button {
+  margin: 5px;
+  width: 88px;
+}
+
+@media screen and (max-width: 395px) {
+  .post-buttons-left,
+  .post-buttons-right {
+    float: none;
+  }
 }

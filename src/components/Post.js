@@ -29,12 +29,10 @@ class Post extends Component {
               <div>
                 Votes: {voteScore}
               </div>
-              {!readOnly && (
-                <div>
-                  <Button className="post-vote-button">+</Button>
-                  <Button>-</Button>
-                </div>
-              )}
+              <div>
+                <Button className="post-vote-button">+</Button>
+                <Button>-</Button>
+              </div>
             </div>
             <CardTitle className="post-title">{title}</CardTitle>
             <CardSubtitle className="post-author">
@@ -47,17 +45,18 @@ class Post extends Component {
               ? <CardText>{this.abbreviate(body)}</CardText>
               : <CardText>{body}</CardText>
             }
-            {readOnly
-              ? <div>
-                  <Link to={'/' + category + '/' + id}>
-                    <Button className="float-right">View</Button>
-                  </Link>
-                </div>
-              : <div>
-                  <Button className="float-left">Edit</Button>
-                  <Button className="float-right">Delete</Button>
-                </div>
-            }
+            {readOnly && (
+              <div className="post-buttons-left">
+                <Link
+                  to={'/' + category + '/' + id}
+                  ><Button className="post-button">View</Button>
+                </Link>
+              </div>
+            )}
+            <div className="post-buttons-right">
+              <Button className="post-button">Edit</Button>
+              <Button className="post-button">Delete</Button>
+            </div>
           </CardBlock>
         </Card>
       </div>
