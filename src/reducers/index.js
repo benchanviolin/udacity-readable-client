@@ -3,7 +3,8 @@ import { combineReducers } from 'redux'
 import {
   GET_COLLAPSED,
   GET_CATEGORIES,
-  GET_POSTS
+  GET_POSTS,
+  GET_COMMENTS_BY_POST_ID
 } from '../actions'
 
 const initialCollapsedState = true;
@@ -45,8 +46,27 @@ function post (state = initialPostState, action) {
   }
 }
 
+const initialCommentState = {}
+
+function comment (state = initialCommentState, action) {
+  switch (action.type) {
+    case GET_COMMENTS_BY_POST_ID :
+      return {
+        ...state,
+        rows: {
+          [action.postId]: {
+            comments: action.comments
+          }
+        }
+      };
+    default :
+      return state;
+  }
+}
+
 export default combineReducers({
   collapsed,
   category,
-  post
+  post,
+  comment
 })

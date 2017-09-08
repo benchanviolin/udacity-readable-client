@@ -24,3 +24,13 @@ export function getPosts (posts) {
     posts
   }
 }
+
+export const GET_COMMENTS_BY_POST_ID = 'GET_COMMENTS_BY_POST_ID'
+
+export function getCommentsByPostId (postId, comments) {
+  return {
+    type: GET_COMMENTS_BY_POST_ID,
+    postId,
+    comments
+  }
+}

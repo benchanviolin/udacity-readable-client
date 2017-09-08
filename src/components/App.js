@@ -12,13 +12,8 @@ import Filter from '../components/Filter'
 
 class App extends Component {
   componentDidMount() {
-    ReadableAPI.getCategories().then((categories) => {
-      this.props.setCategories(categories);
-
-      ReadableAPI.getPosts().then((categories) => {
-        this.props.setPosts(categories);
-      })
-    })
+    ReadableAPI.getCategories().then((categories) => { this.props.setCategories(categories); });
+    ReadableAPI.getPosts().then((categories) => { this.props.setPosts(categories); });
   }
 
   render() {

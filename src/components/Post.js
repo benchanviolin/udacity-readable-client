@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
+import { getCommentsByPostId } from '../actions'
 import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import '../css/Post.css';
+import * as ReadableAPI from '../utils/ReadableAPI'
 
 class Post extends Component {
   static propTypes = {
     readOnly: PropTypes.bool,
     data: PropTypes.object.isRequired
+  }
+  componentDidMount() {
+    ReadableAPI.getCommentsByPostId(this.props.data.id).then((comments) => { this.props.setCommentsByPostId(this.props.data.id, comments); });
   }
   abbreviate(text) {
     if (text.length > 50) {
@@ -64,4 +70,19 @@ class Post extends Component {
   }
 }
 
-export default Post
+function mapStateToProps ({ post }) {
+  return {
+    post
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    setCommentsByPostId: (postId, comments) => dispatch(getCommentsByPostId(postId, comments))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Post)
