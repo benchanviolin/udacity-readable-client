@@ -7,6 +7,15 @@ export function getCollapsed (collapsed) {
   }
 }
 
+export const GET_POSTVIEW_VISIBLE = 'GET_POSTVIEW_VISIBLE'
+
+export function getPostViewVisible (visible) {
+  return {
+    type: GET_POSTVIEW_VISIBLE,
+    visible
+  }
+}
+
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 
 export function getCategories (categories) {

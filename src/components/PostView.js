@@ -4,10 +4,17 @@ import { connect } from 'react-redux'
 import '../css/Post.css'
 import { Container, Row, Col } from 'reactstrap';
 import Post from './Post'
+import { getPostViewVisible } from '../actions'
 
 class PostView extends Component {
   static PropTypes = {
     match: PropTypes.object.isRequired
+  }
+  componentDidMount() {
+    this.props.setPostViewVisible(true);
+  }
+  componentWillUnmount() {
+    this.props.setPostViewVisible(false);
   }
   render () {
     const postId = this.props.match.params.postId;
@@ -53,7 +60,9 @@ function mapStateToProps ({ post }) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return {}
+  return {
+    setPostViewVisible: (visible) => dispatch(getPostViewVisible(visible))
+  }
 }
 
 export default connect(

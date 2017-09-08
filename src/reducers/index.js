@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 
 import {
   GET_COLLAPSED,
+  GET_POSTVIEW_VISIBLE,
   GET_CATEGORIES,
   GET_POSTS,
   GET_COMMENTS_BY_POST_ID
@@ -13,6 +14,17 @@ function collapsed (state = initialCollapsedState, action) {
   switch (action.type) {
     case GET_COLLAPSED :
       return action.collapsed;
+    default :
+      return state;
+  }
+}
+
+const initialPostViewVisibleState = false;
+
+function postViewVisible (state = initialPostViewVisibleState, action) {
+  switch (action.type) {
+    case GET_POSTVIEW_VISIBLE :
+      return action.visible;
     default :
       return state;
   }
@@ -67,6 +79,7 @@ function comment (state = initialCommentState, action) {
 
 export default combineReducers({
   collapsed,
+  postViewVisible,
   category,
   post,
   comment

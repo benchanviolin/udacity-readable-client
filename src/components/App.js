@@ -21,7 +21,9 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Menu />
-          <Filter />
+          {!this.props.postViewVisible && (
+            <Filter />
+          )}
           <Route exact path="/" component={Root} />
           {this.props.category && this.props.category.rows && (
             this.props.category.rows.map((category, key) => (
@@ -35,9 +37,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ category }) {
+function mapStateToProps ({ category, postViewVisible }) {
   return {
-    category
+    category,
+    postViewVisible
   }
 }
 
