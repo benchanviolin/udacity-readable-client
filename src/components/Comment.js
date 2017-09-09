@@ -27,8 +27,15 @@ class Comment extends Component {
     });
   }
   render() {
-    const { id, author, body, voteScore } = this.props.data;
+    const { id, parentId, author, body, voteScore } = this.props.data;
     const timestamp = ToSeconds.toSeconds(this.props.data.timestamp);
+    let post = {};
+    if (this.props.posts && this.props.posts.rows) {
+      let postWrapped = this.props.posts.rows.filter(post => post.id === parentId);
+      if (postWrapped.length > 0) {
+        post = postWrapped[0];
+      }
+    }
 
     return (
       <div>
@@ -61,7 +68,7 @@ class Comment extends Component {
             <CardText className="comment-body">{body}</CardText>
             <div className="comment-buttons-right">
               <Link
-                to={'/comment/' + id + '/edit'}
+                to={'/' + post.category + '/' + post.id + '/comment/' + id + '/edit'}
                 ><Button className="comment-button">Edit</Button>
               </Link>
               <Button
