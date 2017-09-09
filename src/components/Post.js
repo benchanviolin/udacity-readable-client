@@ -7,6 +7,7 @@ import { getCommentsByPostId } from '../actions'
 import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import '../css/Post.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
+import * as Abbreviate from '../utils/Abbreviate'
 
 class Post extends Component {
   static propTypes = {
@@ -15,13 +16,15 @@ class Post extends Component {
   }
   componentDidMount() {
     /* When this post is loaded directly by URL, Store.post may not be available yet.  But it should re-render when post does become available, then it will call this. */
-    ReadableAPI.getCommentsByPostId(this.props.data.id).then((comments) => { this.props.setCommentsByPostId(this.props.data.id, comments); });
+    ReadableAPI.getCommentsByPostId(this.props.data.id).then(comments => { this.props.setCommentsByPostId(this.props.data.id, comments); });
   }
-  abbreviate(text) {
-    if (text.length > 50) {
-      return text.substring(0, 50) + '...';
-    }
-    return text;
+  upVote(id) { this.vote(id, 'upVote'); }
+  downVote(id) { this.vote(id, 'downVote'); }
+  vote(id, option) {
+    console.log('vote: post', id, option);
+    ReadableAPI.votePost(id, option).then(post => {
+      console.log(post);
+    })
   }
   render() {
     const summaryView = this.props.summaryView !== undefined ? this.props.summaryView : true;
@@ -39,8 +42,16 @@ class Post extends Component {
                 Votes: {voteScore}
               </div>
               <div>
-                <Button className="post-vote-button">+</Button>
-                <Button>-</Button>
+                <Button
+                  id={id}
+                  className="post-vote-button"
+                  onClick={(e) => { this.upVote(e.target.id) }}
+                >+</Button>
+                <Button
+                  id={id}
+                  className="post-vote-button"
+                  onClick={(e) => { this.downVote(e.target.id) }}
+                >-</Button>
               </div>
             </div>
             <CardTitle className="post-title">{title}</CardTitle>
@@ -51,7 +62,7 @@ class Post extends Component {
             </CardSubtitle>
             <br></br>
             {summaryView
-              ? <CardText>{this.abbreviate(body)}</CardText>
+              ? <CardText>{Abbreviate.abbreviate(body)}</CardText>
               : <CardText>{body}</CardText>
             }
             {summaryView && (

@@ -90,7 +90,7 @@ function posts (state = initialPostsState, action) {
     case GET_POSTS :
       return {
         ...state,
-        rows: action.posts
+        rows: action.posts.filter(post => post.deleted === false)
       };
     default :
       return state;

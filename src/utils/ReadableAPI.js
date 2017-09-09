@@ -7,6 +7,7 @@ if (!token)
 
 const headers = {
   'Accept': 'application/json',
+  'Content-Type': 'application/json',
   'Authorization': token
 }
 
@@ -22,3 +23,10 @@ export const getPosts = () =>
 export const getCommentsByPostId = (postId) =>
   fetch(`${api}/posts/${postId}/comments`, { headers })
     .then(res => res.json())
+
+export const votePost = (postId, option) =>
+fetch(`${api}/posts/${postId}`, {
+  headers,
+  method: 'POST',
+  body: JSON.stringify({ option })
+}).then(res => res.json())
