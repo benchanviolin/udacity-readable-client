@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import '../css/Post.css'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 import Post from './Post'
 import { getPostViewVisible } from '../actions'
 
 class PostView extends Component {
   static PropTypes = {
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
   }
   componentDidMount() {
     this.props.setPostViewVisible(true);
@@ -18,6 +18,7 @@ class PostView extends Component {
     this.props.setPostViewVisible(false);
   }
   render () {
+    console.log(this.props);
     const postId = this.props.match.params.postId;
     const { posts } = this.props;
     let readyToRender = false;
@@ -41,9 +42,9 @@ class PostView extends Component {
               <Col
                 xs={{ size: 12 }}
               >
-              <Link
-                to={'/' + data.category}
-              >Back to {data.category}</Link>
+              <Button
+                onClick={(e) => { this.props.history.goBack(); }}
+              >Back</Button>
               </Col>
             </Row>
             <Row className="category-post-row">

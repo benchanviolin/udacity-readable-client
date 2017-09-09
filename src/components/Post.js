@@ -10,7 +10,7 @@ import * as ReadableAPI from '../utils/ReadableAPI'
 import * as Abbreviate from '../utils/Abbreviate'
 
 class Post extends Component {
-  static propTypes = {
+  static propTypes = {    
     summaryView: PropTypes.bool,
     data: PropTypes.object.isRequired
   }
