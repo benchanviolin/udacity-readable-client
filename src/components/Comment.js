@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
-import { getCommentsByPostId, getPost, deletePost } from '../actions'
+import { getComment } from '../actions'
 import { Card, CardBlock, CardSubtitle, CardText, Button } from 'reactstrap';
 import '../css/Comment.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
@@ -87,6 +87,7 @@ function mapStateToProps ({ posts, comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
+    setComment: (comment) => dispatch(getComment(comment))
   }
 }
 

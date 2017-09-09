@@ -79,3 +79,12 @@ export function getCommentsByPostId (postId, comments) {
     comments
   }
 }
+
+export const GET_COMMENT = 'GET_COMMENT'
+
+export function getComment (comment) {
+  return {
+    type: GET_COMMENT,
+    comment
+  }
+}

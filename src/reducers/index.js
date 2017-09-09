@@ -9,7 +9,8 @@ import {
   GET_POST,
   ADD_POST,
   DELETE_POST,
-  GET_COMMENTS_BY_POST_ID
+  GET_COMMENTS_BY_POST_ID,
+  GET_COMMENT
 } from '../actions'
 
 const initialCollapsedState = true;
@@ -129,6 +130,16 @@ function comments (state = initialCommentsState, action) {
           }
         }
       };
+    case GET_COMMENT:
+      return {
+        ...state,
+        byPostId: {
+          ...state.byPostId,
+          [action.comment.parentId]: {
+            rows: action.comments.map(comment => comment.id === action.comment.id ? action.comment : comment)
+          }
+        }
+      }
     default :
       return state;
   }
