@@ -43,6 +43,15 @@ export function getPosts (posts) {
   }
 }
 
+export const GET_POST = 'GET_POST'
+
+export function getPost (post) {
+  return {
+    type: GET_POST,
+    post
+  }
+}
+
 export const GET_COMMENTS_BY_POST_ID = 'GET_COMMENTS_BY_POST_ID'
 
 export function getCommentsByPostId (postId, comments) {

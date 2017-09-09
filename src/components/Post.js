@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
-import { getCommentsByPostId } from '../actions'
+import { getCommentsByPostId, getPost } from '../actions'
 import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import '../css/Post.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
@@ -23,7 +23,7 @@ class Post extends Component {
   vote(id, option) {
     console.log('vote: post', id, option);
     ReadableAPI.votePost(id, option).then(post => {
-      console.log(post);
+      this.props.setPost(post);
     })
   }
   render() {
@@ -96,7 +96,8 @@ function mapStateToProps ({ posts, comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    setCommentsByPostId: (postId, comments) => dispatch(getCommentsByPostId(postId, comments))
+    setCommentsByPostId: (postId, comments) => dispatch(getCommentsByPostId(postId, comments)),
+    setPost: (post) => dispatch(getPost(post))
   }
 }
 

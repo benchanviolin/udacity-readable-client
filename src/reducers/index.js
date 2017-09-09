@@ -6,6 +6,7 @@ import {
   CHANGE_FILTER,
   GET_CATEGORIES,
   GET_POSTS,
+  GET_POST,
   GET_COMMENTS_BY_POST_ID
 } from '../actions'
 
@@ -92,6 +93,13 @@ function posts (state = initialPostsState, action) {
         ...state,
         rows: action.posts.filter(post => post.deleted === false)
       };
+    case GET_POST:
+      //console.log(state.rows);
+      //console.log(action.post);
+      return {
+        ...state,
+        rows: state.rows.map(post => post.id === action.post.id ? action.post : post)        
+      }
     default :
       return state;
   }
