@@ -19,14 +19,14 @@ class PostView extends Component {
   }
   render () {
     const postId = this.props.match.params.postId;
-    const { post } = this.props;
+    const { posts } = this.props;
     let readyToRender = false;
 
     /* find current post, accounting for this being loaded before store is fully initialized */
     /* TODO: Can you explain a better way to do this? */
     let data = {};
-    if (post && post.rows) {
-      const currentPost = post.rows.filter(post => post.id === postId);
+    if (posts && posts.rows) {
+      const currentPost = posts.rows.filter(post => post.id === postId);
       if (currentPost && currentPost.length > 0) {
         data = currentPost[0];
         readyToRender = true;
@@ -64,9 +64,9 @@ class PostView extends Component {
   }
 }
 
-function mapStateToProps ({ post }) {
+function mapStateToProps ({ posts }) {
   return {
-    post
+    posts
   }
 }
 

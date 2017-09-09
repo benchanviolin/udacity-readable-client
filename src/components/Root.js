@@ -7,12 +7,12 @@ import Post from './Post'
 
 class Root extends Component {
   render () {
-    const { post } = this.props;
+    const { posts } = this.props;
     return (
       <div>
         <Container fluid={true}>
           <Row className="category-post-row">
-            {post && post.rows && (post.rows.map((post, key) => {
+            {posts && posts.rows && (posts.rows.map((post, key) => {
               return <Col
                 key={key}
                 xs={{ size: 12 }}
@@ -31,9 +31,9 @@ class Root extends Component {
   }
 }
 
-function mapStateToProps ({ post }) {
+function mapStateToProps ({ posts }) {
   return {
-    post
+    posts
   }
 }
 

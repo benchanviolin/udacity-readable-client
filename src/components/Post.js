@@ -25,8 +25,9 @@ class Post extends Component {
   }
   render() {
     const summaryView = this.props.summaryView !== undefined ? this.props.summaryView : true;
+    const { comments } = this.props;
     const { id, title, author, body, category, voteScore, timestamp } = this.props.data;
-    const commentCount = this.props.comment && this.props.comment.rows && this.props.comment.rows[id] && this.props.comment.rows[id].comments ? this.props.comment.rows[id].comments.length : 0;
+    const commentCount = comments && comments.byPostId && comments.byPostId[id] && comments.byPostId[id].rows ? comments.byPostId[id].rows.length : 0;
     //console.log('Props', this.props);
 
     return (
@@ -75,10 +76,10 @@ class Post extends Component {
   }
 }
 
-function mapStateToProps ({ post, comment }) {
+function mapStateToProps ({ posts, comments }) {
   return {
-    post,
-    comment
+    posts,
+    comments
   }
 }
 

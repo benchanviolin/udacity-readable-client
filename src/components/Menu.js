@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Navbar, NavbarToggler, Collapse, Nav, NavItem } from 'reactstrap';
+import { Navbar, NavbarToggler, Collapse, Nav, NavItem } from 'reactstrap'
 import '../css/Menu.css'
 import { getCollapsed } from '../actions'
 
@@ -14,7 +14,7 @@ class Menu extends Component {
   }
 
   render () {
-    const { category, collapsed } = this.props;
+    const { categories, collapsed } = this.props;
     return (
       <Navbar color="dark" light className="menu-navbar" toggleable>
        <NavbarToggler right onClick={() => {this.toggleNavbar()}} />
@@ -30,7 +30,7 @@ class Menu extends Component {
                className="menu-category"
              >all categories</Link>
            </NavItem>
-           {category && category.rows && (category.rows.map((category, key) => {
+           {categories && categories.rows && (categories.rows.map((category, key) => {
              return <NavItem key={key}>
                <Link
                  to={'/'+category.name}
@@ -46,10 +46,10 @@ class Menu extends Component {
   }
 }
 
-function mapStateToProps ({ collapsed, category }) {
+function mapStateToProps ({ collapsed, categories }) {
   return {
     collapsed, /* It feels silly to put this in the store, but the rubric says to do so! */
-    category
+    categories
   }
 }
 

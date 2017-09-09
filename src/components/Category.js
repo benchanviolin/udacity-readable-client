@@ -1,20 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 //import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Container, Row, Col } from 'reactstrap';
-import '../css/Category.css';
+import { Container, Row, Col } from 'reactstrap'
+import '../css/Category.css'
 import Post from './Post.js'
 
 class Category extends Component {
+  static propTypes = {
+    category: PropTypes.string.isRequired,
+  }
   render() {
-    const { category, post } = this.props;
+    const { category, posts } = this.props;
     //console.log('Props', this.props);
 
     return (
       <div>
         <Container fluid={true}>
           <Row className="category-post-row">
-            {post && post.rows && (post.rows.filter(post => post.category === category))
+            {posts && posts.rows && (posts.rows.filter(post => post.category === category))
               .map((post, key) => {
               return <Col
                 key={key}
@@ -35,9 +39,9 @@ class Category extends Component {
   }
 }
 
-function mapStateToProps ({ post }) {
+function mapStateToProps ({ posts }) {
   return {
-    post
+    posts
   }
 }
 

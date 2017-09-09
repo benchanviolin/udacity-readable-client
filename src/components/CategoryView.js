@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import '../css/Category.css'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap'
 import Category from './Category'
 
 class CategoryView extends Component {
@@ -33,17 +32,4 @@ class CategoryView extends Component {
   }
 }
 
-function mapStateToProps ({ post }) {
-  return {
-    post
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {}
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CategoryView)
+export default CategoryView

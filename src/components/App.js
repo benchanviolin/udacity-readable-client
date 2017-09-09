@@ -25,8 +25,8 @@ class App extends Component {
             <Filter />
           )}
           <Route exact path="/" component={Root} />
-          {this.props.category && this.props.category.rows && (
-            this.props.category.rows.map((category, key) => (
+          {this.props.categories && this.props.categories.rows && (
+            this.props.categories.rows.map((category, key) => (
               <Route key={key} exact path={'/' + category.path} component={CategoryView} />
             ))
           )}
@@ -37,9 +37,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ category, postViewVisible }) {
+function mapStateToProps ({ categories, postViewVisible }) {
   return {
-    category,
+    categories,
     postViewVisible
   }
 }

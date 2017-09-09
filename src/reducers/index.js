@@ -30,9 +30,9 @@ function postViewVisible (state = initialPostViewVisibleState, action) {
   }
 }
 
-const initialCategoryState = {}
+const initialCategoriesState = {}
 
-function category (state = initialCategoryState, action) {
+function categories (state = initialCategoriesState, action) {
   switch (action.type) {
     case GET_CATEGORIES :
       return {
@@ -44,9 +44,9 @@ function category (state = initialCategoryState, action) {
   }
 }
 
-const initialPostState = {}
+const initialPostsState = {}
 
-function post (state = initialPostState, action) {
+function posts (state = initialPostsState, action) {
   switch (action.type) {
     case GET_POSTS :
       return {
@@ -58,17 +58,17 @@ function post (state = initialPostState, action) {
   }
 }
 
-const initialCommentState = {}
+const initialCommentsState = {}
 
-function comment (state = initialCommentState, action) {
+function comments (state = initialCommentsState, action) {
   switch (action.type) {
     case GET_COMMENTS_BY_POST_ID :
       return {
         ...state,
-        rows: {
-          ...state.rows,
+        byPostId: {
+          ...state.byPostId,
           [action.postId]: {
-            comments: action.comments
+            rows: action.comments
           }
         }
       };
@@ -80,7 +80,7 @@ function comment (state = initialCommentState, action) {
 export default combineReducers({
   collapsed,
   postViewVisible,
-  category,
-  post,
-  comment
+  categories,
+  posts,
+  comments
 })
