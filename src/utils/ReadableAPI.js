@@ -37,3 +37,9 @@ fetch(`${api}/posts/${postId}`, {
   method: 'PUT',
   body: JSON.stringify({ title, body })
 }).then(res => res.json())
+
+export const deletePost = (postId) =>
+fetch(`${api}/posts/${postId}`, {
+  headers,
+  method: 'DELETE'
+});

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
-import { getCommentsByPostId, getPost } from '../actions'
+import { getCommentsByPostId, getPost, getPosts } from '../actions'
 import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import '../css/Post.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
@@ -21,10 +21,14 @@ class Post extends Component {
   upVote(id) { this.vote(id, 'upVote'); }
   downVote(id) { this.vote(id, 'downVote'); }
   vote(id, option) {
-    console.log('vote: post', id, option);
     ReadableAPI.votePost(id, option).then(post => {
       this.props.setPost(post);
-    })
+    });
+  }
+  delete(id) {
+    ReadableAPI.deletePost(id).then(() => {
+      this.props.setPosts(this.props.posts.rows.filter(post => post.id !== id));
+    });
   }
   render() {
     const summaryView = this.props.summaryView !== undefined ? this.props.summaryView : true;
@@ -79,7 +83,11 @@ class Post extends Component {
                 to={'/' + category + '/' + id + '/edit'}
                 ><Button className="post-button">Edit</Button>
               </Link>
-              <Button className="post-button">Delete</Button>
+              <Button
+                id={id}
+                className="post-button"
+                onClick={e => { this.delete(e.target.id) }}
+              >Delete</Button>
             </div>
             <div className="clearfix"></div>
             <br></br>
@@ -101,7 +109,8 @@ function mapStateToProps ({ posts, comments }) {
 function mapDispatchToProps (dispatch) {
   return {
     setCommentsByPostId: (postId, comments) => dispatch(getCommentsByPostId(postId, comments)),
-    setPost: (post) => dispatch(getPost(post))
+    setPost: (post) => dispatch(getPost(post)),
+    setPosts: (posts) => dispatch(getPosts(posts))
   }
 }
 
