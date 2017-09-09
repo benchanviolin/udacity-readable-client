@@ -16,6 +16,15 @@ export function getPostViewVisible (visible) {
   }
 }
 
+export const CHANGE_FILTER = 'CHANGE_FILTER'
+
+export function changeFilter (activeFilter) {
+  return {
+    type: CHANGE_FILTER,
+    activeFilter
+  }
+}
+
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 
 export function getCategories (categories) {

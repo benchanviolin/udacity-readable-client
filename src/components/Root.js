@@ -4,10 +4,12 @@ import { Container, Row, Col } from 'reactstrap';
 import '../css/Root.css'
 import '../css/Category.css'
 import Post from './Post'
+import * as SortPosts from '../utils/SortPosts'
 
 class Root extends Component {
   render () {
-    const { posts } = this.props;
+    const { filters } = this.props;
+    const posts = SortPosts.sortPosts(this.props.posts, filters);
     return (
       <div>
         <Container fluid={true}>
@@ -31,9 +33,10 @@ class Root extends Component {
   }
 }
 
-function mapStateToProps ({ posts }) {
+function mapStateToProps ({ posts, filters }) {
   return {
-    posts
+    posts,
+    filters
   }
 }
 

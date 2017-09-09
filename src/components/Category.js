@@ -5,13 +5,15 @@ import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap'
 import '../css/Category.css'
 import Post from './Post.js'
+import * as SortPosts from '../utils/SortPosts'
 
 class Category extends Component {
   static propTypes = {
     category: PropTypes.string.isRequired,
   }
   render() {
-    const { category, posts } = this.props;
+    const { category, filters } = this.props;
+    const posts = SortPosts.sortPosts(this.props.posts, filters);
     //console.log('Props', this.props);
 
     return (
