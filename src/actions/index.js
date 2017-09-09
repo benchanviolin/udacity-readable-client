@@ -52,6 +52,24 @@ export function getPost (post) {
   }
 }
 
+export const ADD_POST = 'ADD_POST'
+
+export function addPost (post) {
+  return {
+    type: ADD_POST,
+    post
+  }
+}
+
+export const DELETE_POST = 'DELETE_POST'
+
+export function deletePost (id) {
+  return {
+    type: DELETE_POST,
+    id
+  }
+}
+
 export const GET_COMMENTS_BY_POST_ID = 'GET_COMMENTS_BY_POST_ID'
 
 export function getCommentsByPostId (postId, comments) {

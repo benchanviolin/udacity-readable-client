@@ -7,6 +7,8 @@ import {
   GET_CATEGORIES,
   GET_POSTS,
   GET_POST,
+  ADD_POST,
+  DELETE_POST,
   GET_COMMENTS_BY_POST_ID
 } from '../actions'
 
@@ -94,11 +96,19 @@ function posts (state = initialPostsState, action) {
         rows: action.posts.filter(post => post.deleted === false)
       };
     case GET_POST:
-      //console.log(state.rows);
-      //console.log(action.post);
       return {
         ...state,
-        rows: state.rows.map(post => post.id === action.post.id ? action.post : post)        
+        rows: state.rows.map(post => post.id === action.post.id ? action.post : post)
+      }
+    case ADD_POST:
+      return {
+        ...state,
+        rows: state.rows.concat([ action.post ])
+      }
+    case DELETE_POST:
+      return {
+        ...state,
+        rows: state.rows.filter(post => post.id !== action.id)
       }
     default :
       return state;

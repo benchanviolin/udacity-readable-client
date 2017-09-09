@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import '../css/Category.css'
 import { Container, Row, Col } from 'reactstrap'
@@ -14,9 +15,14 @@ class CategoryView extends Component {
     const title = category;
 
     return (
-      <div>
-        <div className="category-view-space"></div>
+      <div>        
         <Container fluid={true}>
+          <Row className="category-post-row">
+            <Link
+              className="category-add-post"
+              to={'/' + category + '/addpost'}
+            >+ Add Post</Link>
+          </Row>
           <Row>
             <Col
               xs={{ size: 12 }}

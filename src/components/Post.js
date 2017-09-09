@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
-import { getCommentsByPostId, getPost, getPosts } from '../actions'
+import { getCommentsByPostId, getPost, deletePost } from '../actions'
 import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
 import '../css/Post.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
 import * as Abbreviate from '../utils/Abbreviate'
+import * as ToSeconds from '../utils/ToSeconds'
 
 class Post extends Component {
   static propTypes = {
@@ -27,13 +28,14 @@ class Post extends Component {
   }
   delete(id) {
     ReadableAPI.deletePost(id).then(() => {
-      this.props.setPosts(this.props.posts.rows.filter(post => post.id !== id));
+      this.props.deletePost(id);
     });
   }
   render() {
     const summaryView = this.props.summaryView !== undefined ? this.props.summaryView : true;
     const { comments } = this.props;
-    const { id, title, author, category, body, voteScore, timestamp } = this.props.data;
+    const { id, title, author, category, body, voteScore } = this.props.data;
+    const timestamp = ToSeconds.toSeconds(this.props.data.timestamp);
     //const body = this.props.data.body.replace(new RegExp('\n'), '<br>');
     const commentCount = comments && comments.byPostId && comments.byPostId[id] && comments.byPostId[id].rows ? comments.byPostId[id].rows.length : 0;
     //console.log('Props', this.props);
@@ -110,7 +112,7 @@ function mapDispatchToProps (dispatch) {
   return {
     setCommentsByPostId: (postId, comments) => dispatch(getCommentsByPostId(postId, comments)),
     setPost: (post) => dispatch(getPost(post)),
-    setPosts: (posts) => dispatch(getPosts(posts))
+    deletePost: (posts) => dispatch(deletePost(posts))
   }
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
 import '../css/Root.css'
@@ -14,6 +15,12 @@ class Root extends Component {
       <div>
         <Container fluid={true}>
           <Row className="category-post-row">
+            <Link
+              className="category-add-post"
+              to="/addpost"
+            >+ Add Post</Link>
+          </Row>
+          <Row className="category-post-row">
             {posts && posts.rows && (posts.rows.map((post, key) => {
               return <Col
                 key={key}
@@ -28,6 +35,7 @@ class Root extends Component {
             }))}
           </Row>
         </Container>
+
       </div>
     )
   }

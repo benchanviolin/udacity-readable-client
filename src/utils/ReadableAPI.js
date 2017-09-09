@@ -43,3 +43,10 @@ fetch(`${api}/posts/${postId}`, {
   headers,
   method: 'DELETE'
 });
+
+export const addPost = (id, timestamp, title, body, author, category) =>
+fetch(`${api}/posts`, {
+  headers,
+  method: 'POST',
+  body: JSON.stringify({ id, timestamp, title, body, author, category })
+}).then(res => res.json())

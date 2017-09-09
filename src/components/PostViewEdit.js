@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'reactstrap';
 import PostEdit from './PostEdit'
 import { getPostViewVisible } from '../actions'
 
-class PostView extends Component {
+class PostViewEdit extends Component {
   static PropTypes = {
     match: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired
@@ -17,7 +17,7 @@ class PostView extends Component {
   componentWillUnmount() {
     this.props.setPostViewVisible(false);
   }
-  render () {    
+  render () {
     const postId = this.props.match.params.postId;
     const { posts } = this.props;
     let readyToRender = false;
@@ -70,4 +70,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostView)
+)(PostViewEdit)
