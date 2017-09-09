@@ -1,14 +1,14 @@
-.post-title,
-.post-author,
-.post-category {
+.comment-title,
+.comment-author,
+.comment-category {
   max-width: calc(100% - 95px);
 }
 
-.post-body {
+.comment-body {
   white-space: pre;
 }
 
-.post-vote {
+.comment-vote {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -16,30 +16,26 @@
   text-align: center;
 }
 
-.post-vote-button {
+.comment-vote-button {
   margin: 0 10px 0 0 !important;
 }
 
-.post-buttons-left {
+.comment-buttons-left {
   float: left;
 }
 
-.post-buttons-right {
+.comment-buttons-right {
   float: right;
 }
 
-.post-button {
+.comment-button {
   margin: 5px;
   width: 88px;
 }
 
-.post-comment-count {
-  float: right;
-}
-
 @media screen and (max-width: 395px) {
-  .post-buttons-left,
-  .post-buttons-right {
+  .comment-buttons-left,
+  .comment-buttons-right {
     float: none;
   }
 }
