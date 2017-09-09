@@ -50,3 +50,16 @@ fetch(`${api}/posts`, {
   method: 'POST',
   body: JSON.stringify({ id, timestamp, title, body, author, category })
 }).then(res => res.json())
+
+export const voteComment = (commentId, option) =>
+fetch(`${api}/comments/${commentId}`, {
+  headers,
+  method: 'POST',
+  body: JSON.stringify({ option })
+}).then(res => res.json())
+
+export const deleteComment = (commentId) =>
+fetch(`${api}/comments/${commentId}`, {
+  headers,
+  method: 'DELETE'
+});

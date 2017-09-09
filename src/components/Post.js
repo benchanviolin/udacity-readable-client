@@ -93,7 +93,7 @@ class Post extends Component {
             <br></br>
             <div className="post-comment-count">Comments: {commentCount}</div>
           </CardBlock>
-        </Card>
+        </Card>        
       </div>
     )
   }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import '../css/Post.css'
 import { Container, Row, Col, Button } from 'reactstrap';
 import Post from './Post'
+import Comment from './Comment'
 import { getPostViewVisible } from '../actions'
 
 class PostView extends Component {
@@ -17,9 +18,10 @@ class PostView extends Component {
   componentWillUnmount() {
     this.props.setPostViewVisible(false);
   }
-  render () {    
+  render () {
     const postId = this.props.match.params.postId;
     const { posts } = this.props;
+    const comments = this.props.comments && this.props.comments.byPostId && this.props.comments.byPostId[postId] && this.props.comments.byPostId[postId].rows ? this.props.comments.byPostId[postId].rows : [];
     let readyToRender = false;
 
     /* find current post, accounting for this being loaded before store is fully initialized */
@@ -57,6 +59,21 @@ class PostView extends Component {
                 />
               </Col>
             </Row>
+            {comments && (
+              <Row className="category-post-row">
+                {comments.map((comment, key) => (
+                  <Col
+                    key={key}
+                    sm={{ size: 12 }}
+                    md={{ size: 6 }}
+                  >
+                    <Comment
+                      data={comment}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            )}
           </Container>
         )}
       </div>
@@ -64,9 +81,11 @@ class PostView extends Component {
   }
 }
 
-function mapStateToProps ({ posts }) {
+function mapStateToProps ({ posts, postViewVisible, comments }) {
   return {
-    posts
+    posts,
+    comments,
+    postViewVisible
   }
 }
 

@@ -4,20 +4,15 @@ import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
 import { getCommentsByPostId, getPost, deletePost } from '../actions'
-import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
+import { Card, CardBlock, CardSubtitle, CardText, Button } from 'reactstrap';
 import '../css/Comment.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
-import * as Abbreviate from '../utils/Abbreviate'
 import * as ToSeconds from '../utils/ToSeconds'
 
 class Comment extends Component {
   static propTypes = {
     summaryView: PropTypes.bool,
     data: PropTypes.object.isRequired
-  }
-  componentDidMount() {
-    /* When this post is loaded directly by URL, Store.post may not be available yet.  But it should re-render when post does become available, then it will call this. */
-    ReadableAPI.getCommentsByPostId(this.props.data.id).then(comments => { this.props.setCommentsByPostId(this.props.data.id, comments); });
   }
   upVote(id) { this.vote(id, 'upVote'); }
   downVote(id) { this.vote(id, 'downVote'); }
@@ -32,45 +27,46 @@ class Comment extends Component {
     });
   }
   render() {
-    const { id, parentId, author, body, voteScore } = this.props.data;
+    const { id, author, body, voteScore } = this.props.data;
     const timestamp = ToSeconds.toSeconds(this.props.data.timestamp);
 
     return (
       <div>
         <Card>
           <CardBlock>
-            <div className="post-vote">
+            <div className="comment-vote">
               <div>
                 Votes: {voteScore}
               </div>
               <div>
                 <Button
                   id={id}
-                  className="post-vote-button"
+                  className="comment-vote-button"
                   onClick={(e) => { this.upVote(e.target.id) }}
                 >+</Button>
                 <Button
                   id={id}
-                  className="post-vote-button"
+                  className="comment-vote-button"
                   onClick={(e) => { this.downVote(e.target.id) }}
                 >-</Button>
               </div>
             </div>
-            <CardSubtitle className="post-author">
-              <span>{author + ' [' + category + ']'}</span>
-              &nbsp;-&nbsp;
+            <CardSubtitle className="comment-author">
+              <span>{author}</span>
+              <br></br>
               <Timestamp time={timestamp} format="full" />
             </CardSubtitle>
             <br></br>
-            <CardText><pre>{body}</pre></CardText>
-            <div className="post-buttons-right">
+            <br></br>
+            <CardText className="comment-body">{body}</CardText>
+            <div className="comment-buttons-right">
               <Link
-                to={'/' + category + '/' + id + '/edit'}
-                ><Button className="post-button">Edit</Button>
+                to={'/comment/' + id + '/edit'}
+                ><Button className="comment-button">Edit</Button>
               </Link>
               <Button
                 id={id}
-                className="post-button"
+                className="comment-button"
                 onClick={e => { this.delete(e.target.id) }}
               >Delete</Button>
             </div>
