@@ -30,3 +30,10 @@ fetch(`${api}/posts/${postId}`, {
   method: 'POST',
   body: JSON.stringify({ option })
 }).then(res => res.json())
+
+export const editPost = (postId, title, body) =>
+fetch(`${api}/posts/${postId}`, {
+  headers,
+  method: 'PUT',
+  body: JSON.stringify({ title, body })
+}).then(res => res.json())

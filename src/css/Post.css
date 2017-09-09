@@ -1,8 +1,6 @@
-.post-title {
-  max-width: calc(100% - 95px)
-}
-
-.post-author {
+.post-title,
+.post-author,
+.post-category {
   max-width: calc(100% - 95px)
 }
 

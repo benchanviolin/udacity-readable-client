@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
+    "form-serialize": "^0.7.2",
     "normalize.css": "^7.0.0",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",

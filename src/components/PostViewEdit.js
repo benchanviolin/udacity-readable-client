@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import '../css/Post.css'
-import { Container, Row, Col, Button } from 'reactstrap';
-import Post from './Post'
+import { Container, Row, Col } from 'reactstrap';
+import PostEdit from './PostEdit'
 import { getPostViewVisible } from '../actions'
 
 class PostView extends Component {
@@ -41,19 +41,10 @@ class PostView extends Component {
               <Col
                 xs={{ size: 12 }}
               >
-              <Button
-                onClick={(e) => { this.props.history.goBack(); }}
-              >Back</Button>
-              </Col>
-            </Row>
-            <Row className="category-post-row">
-              <Col
-                xs={{ size: 12 }}
-              >
-                <Post
+                <PostEdit
                   id={postId}
-                  summaryView={false}
                   data={data}
+                  history={this.props.history}
                 />
               </Col>
             </Row>

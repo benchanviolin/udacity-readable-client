@@ -10,7 +10,7 @@ import * as ReadableAPI from '../utils/ReadableAPI'
 import * as Abbreviate from '../utils/Abbreviate'
 
 class Post extends Component {
-  static propTypes = {    
+  static propTypes = {
     summaryView: PropTypes.bool,
     data: PropTypes.object.isRequired
   }
@@ -29,7 +29,8 @@ class Post extends Component {
   render() {
     const summaryView = this.props.summaryView !== undefined ? this.props.summaryView : true;
     const { comments } = this.props;
-    const { id, title, author, body, category, voteScore, timestamp } = this.props.data;
+    const { id, title, author, category, body, voteScore, timestamp } = this.props.data;
+    //const body = this.props.data.body.replace(new RegExp('\n'), '<br>');
     const commentCount = comments && comments.byPostId && comments.byPostId[id] && comments.byPostId[id].rows ? comments.byPostId[id].rows.length : 0;
     //console.log('Props', this.props);
 
@@ -63,7 +64,7 @@ class Post extends Component {
             <br></br>
             {summaryView
               ? <CardText>{Abbreviate.abbreviate(body)}</CardText>
-              : <CardText>{body}</CardText>
+              : <CardText><pre>{body}</pre></CardText>
             }
             {summaryView && (
               <div className="post-buttons-left">
@@ -74,7 +75,10 @@ class Post extends Component {
               </div>
             )}
             <div className="post-buttons-right">
-              <Button className="post-button">Edit</Button>
+              <Link
+                to={'/' + category + '/' + id + '/edit'}
+                ><Button className="post-button">Edit</Button>
+              </Link>
               <Button className="post-button">Delete</Button>
             </div>
             <div className="clearfix"></div>
