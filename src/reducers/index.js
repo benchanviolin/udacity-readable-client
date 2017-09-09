@@ -136,7 +136,7 @@ function comments (state = initialCommentsState, action) {
         byPostId: {
           ...state.byPostId,
           [action.comment.parentId]: {
-            rows: action.comments.map(comment => comment.id === action.comment.id ? action.comment : comment)
+            rows: state.byPostId[action.comment.parentId].rows.map(comment => comment.id === action.comment.id ? action.comment : comment)
           }
         }
       }
