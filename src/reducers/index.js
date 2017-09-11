@@ -12,6 +12,7 @@ import {
   GET_COMMENTS_BY_POST_ID,
   GET_COMMENT,
   GET_COMMENTVIEW_VISIBLE,
+  ADD_COMMENT,
   DELETE_COMMENT
 } from '../actions'
 
@@ -139,6 +140,16 @@ function comments (state = initialCommentsState, action) {
           ...state.byPostId,
           [action.comment.parentId]: {
             rows: state.byPostId[action.comment.parentId].rows.map(comment => comment.id === action.comment.id ? action.comment : comment)
+          }
+        }
+      }
+    case ADD_COMMENT:
+      return {
+        ...state,
+        byPostId: {
+          ...state.byPostId,
+          [action.parentId]: {
+            rows: state.byPostId[action.comment.parentId].rows.concat([ action.comment ])
           }
         }
       }

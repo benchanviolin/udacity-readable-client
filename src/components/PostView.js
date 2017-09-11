@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import '../css/Post.css'
 import { Container, Row, Col, Button } from 'reactstrap'
 import Post from './Post'
@@ -59,6 +60,12 @@ class PostView extends Component {
                 />
               </Col>
             </Row>
+            <Row className="category-post-row">
+              <Link
+                className="category-add-post"
+                to={'/' + data.category + '/' + postId + '/addcomment'}
+              >+ Add Comment</Link>
+            </Row>
             {comments && (
               <Row className="category-post-row">
                 {comments.map((comment, key) => (
@@ -70,6 +77,7 @@ class PostView extends Component {
                     <Comment
                       data={comment}
                     />
+                  <div className="category-post-after"></div>
                   </Col>
                 ))}
               </Row>

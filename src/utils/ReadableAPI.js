@@ -58,6 +58,13 @@ fetch(`${api}/comments/${commentId}`, {
   body: JSON.stringify({ option })
 }).then(res => res.json())
 
+export const addComment = (id, timestamp, body, author, parentId) =>
+fetch(`${api}/comments`, {
+  headers,
+  method: 'POST',
+  body: JSON.stringify({ id, timestamp, body, author, parentId })
+}).then(res => res.json())
+
 export const deleteComment = (commentId) =>
 fetch(`${api}/comments/${commentId}`, {
   headers,

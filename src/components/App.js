@@ -11,6 +11,7 @@ import PostView from '../components/PostView'
 import PostViewEdit from '../components/PostViewEdit'
 import PostViewAdd from '../components/PostViewAdd'
 import CommentViewEdit from '../components/CommentViewEdit'
+import CommentViewAdd from '../components/CommentViewAdd'
 import Filter from '../components/Filter'
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
           <Route exact path="/addpost" component={PostViewAdd} />
           <Route exact path="/:category/addpost" component={PostViewAdd} />
           <Route exact path="/:category/:postId/comment/:commentId/edit" component={CommentViewEdit} />
+          <Route exact path="/:category/:postId/addcomment" component={CommentViewAdd} />
         </div>
       </BrowserRouter>
     );
