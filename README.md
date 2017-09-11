@@ -11,6 +11,11 @@ ADDITIONAL FEATURES:
 - slightly more nested approach to store.comments where they're organized first by postId to make counting them easier when displaying number of comments in each postId
 - loading of only post-specific comments to limit API data size (e.g. if only 2 posts / 100 are visible on a category view then only load those 2 posts' comments instead of loading 100 posts' comments)
 
+* SUGGESTED CORRECTION TO DOCUMENTATION FOR SERVER GIT REPO:
+README.md line 78 should say "author: String" instead of "owner: String"
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
