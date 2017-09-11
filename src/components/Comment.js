@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
-import { getComment } from '../actions'
+import { getComment, deleteComment } from '../actions'
 import { Card, CardBlock, CardSubtitle, CardText, Button } from 'reactstrap'
 import '../css/Comment.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
@@ -22,9 +22,9 @@ class Comment extends Component {
       this.props.setComment(comment);
     });
   }
-  delete(id) {
+  delete(id, parentId) {
     ReadableAPI.deleteComment(id).then(() => {
-      this.props.deleteComment(id);
+      this.props.deleteComment(id, parentId);
     });
   }
   render() {
@@ -75,7 +75,7 @@ class Comment extends Component {
               <Button
                 id={id}
                 className="comment-button"
-                onClick={e => { this.delete(e.target.id) }}
+                onClick={e => { this.delete(e.target.id, parentId) }}
               >Delete</Button>
             </div>
             <div className="clearfix"></div>
@@ -95,7 +95,8 @@ function mapStateToProps ({ posts, comments }) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    setComment: (comment) => dispatch(getComment(comment))
+    setComment: (comment) => dispatch(getComment(comment)),
+    deleteComment: (id, parentId) => dispatch(deleteComment(id, parentId))
   }
 }
 

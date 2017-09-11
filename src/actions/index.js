@@ -97,3 +97,13 @@ export function getCommentViewVisible (visible) {
     visible
   }
 }
+
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+
+export function deleteComment (id, parentId) {
+  return {
+    type: DELETE_COMMENT,
+    id,
+    parentId
+  }
+}

@@ -11,7 +11,8 @@ import {
   DELETE_POST,
   GET_COMMENTS_BY_POST_ID,
   GET_COMMENT,
-  GET_COMMENTVIEW_VISIBLE
+  GET_COMMENTVIEW_VISIBLE,
+  DELETE_COMMENT
 } from '../actions'
 
 const initialCollapsedState = true;
@@ -138,6 +139,16 @@ function comments (state = initialCommentsState, action) {
           ...state.byPostId,
           [action.comment.parentId]: {
             rows: state.byPostId[action.comment.parentId].rows.map(comment => comment.id === action.comment.id ? action.comment : comment)
+          }
+        }
+      }
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        byPostId: {
+          ...state.byPostId,
+          [action.parentId]: {
+            rows: state.byPostId[action.parentId].rows.filter(comment => comment.id !== action.id)
           }
         }
       }
