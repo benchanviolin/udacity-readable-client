@@ -25,8 +25,7 @@ class PostAdd extends Component {
       this.props.onCreateContact(values)*/
   }
   render() {
-    const { history, categories, category } = this.props;
-    console.log('Props', this.props);
+    const { history, categories, category } = this.props;    
 
     return (
       <form onSubmit={this.addPost}>

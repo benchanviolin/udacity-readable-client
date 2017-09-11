@@ -26,8 +26,7 @@ class CommentAdd extends Component {
       this.props.onCreateContact(values)*/
   }
   render() {
-    const { history } = this.props;
-    console.log('Props', this.props);
+    const { history } = this.props;    
 
     return (
       <form onSubmit={this.addComment}>

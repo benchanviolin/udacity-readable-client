@@ -17,8 +17,7 @@ class Comment extends Component {
   upVote(id) { this.vote(id, 'upVote'); }
   downVote(id) { this.vote(id, 'downVote'); }
   vote(id, option) {
-    ReadableAPI.voteComment(id, option).then(comment => {
-      console.log('COMMENT:', comment);
+    ReadableAPI.voteComment(id, option).then(comment => {      
       this.props.setComment(comment);
     });
   }

@@ -13,8 +13,7 @@ class Category extends Component {
   }
   render() {
     const { category, filters } = this.props;
-    const posts = SortPosts.sortPosts(this.props.posts, filters);
-    //console.log('Props', this.props);
+    const posts = SortPosts.sortPosts(this.props.posts, filters);    
 
     return (
       <div>
