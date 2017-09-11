@@ -33,6 +33,8 @@ class PostView extends Component {
       if (currentPost && currentPost.length > 0) {
         data = currentPost[0];
         readyToRender = true;
+      } else {
+        this.props.history.goBack();
       }
     }
 
