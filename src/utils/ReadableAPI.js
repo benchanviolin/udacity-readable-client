@@ -63,3 +63,10 @@ fetch(`${api}/comments/${commentId}`, {
   headers,
   method: 'DELETE'
 });
+
+export const editComment = (commentId, timestamp, body) =>
+fetch(`${api}/comments/${commentId}`, {
+  headers,
+  method: 'PUT',
+  body: JSON.stringify({ timestamp, body })
+}).then(res => res.json())

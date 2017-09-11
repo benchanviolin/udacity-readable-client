@@ -10,7 +10,8 @@ import {
   ADD_POST,
   DELETE_POST,
   GET_COMMENTS_BY_POST_ID,
-  GET_COMMENT
+  GET_COMMENT,
+  GET_COMMENTVIEW_VISIBLE
 } from '../actions'
 
 const initialCollapsedState = true;
@@ -126,7 +127,7 @@ function comments (state = initialCommentsState, action) {
         byPostId: {
           ...state.byPostId,
           [action.postId]: {
-            rows: action.comments
+            rows: action.comments.filter(comment => comment.deleted === false)
           }
         }
       };
@@ -145,11 +146,23 @@ function comments (state = initialCommentsState, action) {
   }
 }
 
+const initialCommentViewVisibleState = false;
+
+function commentViewVisible (state = initialCommentViewVisibleState, action) {
+  switch (action.type) {
+    case GET_COMMENTVIEW_VISIBLE :
+      return action.visible;
+    default :
+      return state;
+  }
+}
+
 export default combineReducers({
   collapsed,
   postViewVisible,
   filters,
   categories,
   posts,
-  comments
+  comments,
+  commentViewVisible
 })

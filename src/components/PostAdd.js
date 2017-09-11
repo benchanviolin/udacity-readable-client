@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { addPost } from '../actions'
-import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
+import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
 import '../css/Post.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
 import serializeForm from 'form-serialize'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap'
 import '../css/Root.css'
 import '../css/Category.css'
 import Post from './Post'

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
 import { getCommentsByPostId, getPost, deletePost } from '../actions'
-import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap';
+import { Card, CardBlock, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
 import '../css/Post.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
 import * as Abbreviate from '../utils/Abbreviate'
@@ -93,7 +93,7 @@ class Post extends Component {
             <br></br>
             <div className="post-comment-count">Comments: {commentCount}</div>
           </CardBlock>
-        </Card>        
+        </Card>
       </div>
     )
   }

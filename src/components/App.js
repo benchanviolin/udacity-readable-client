@@ -10,6 +10,7 @@ import CategoryView from '../components/CategoryView'
 import PostView from '../components/PostView'
 import PostViewEdit from '../components/PostViewEdit'
 import PostViewAdd from '../components/PostViewAdd'
+import CommentViewEdit from '../components/CommentViewEdit'
 import Filter from '../components/Filter'
 
 class App extends Component {
@@ -23,7 +24,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Menu />
-          {!this.props.postViewVisible && (
+          {!this.props.postViewVisible && !this.props.commentViewVisible && (
             <Filter />
           )}
           <Route exact path="/" component={Root} />
@@ -36,16 +37,18 @@ class App extends Component {
           <Route exact path="/:category/:postId/edit" component={PostViewEdit} />
           <Route exact path="/addpost" component={PostViewAdd} />
           <Route exact path="/:category/addpost" component={PostViewAdd} />
+          <Route exact path="/:category/:postId/comment/:commentId/edit" component={CommentViewEdit} />
         </div>
       </BrowserRouter>
     );
   }
 }
 
-function mapStateToProps ({ categories, postViewVisible }) {
+function mapStateToProps ({ categories, postViewVisible, commentViewVisible }) {
   return {
     categories,
-    postViewVisible
+    postViewVisible,
+    commentViewVisible
   }
 }
 

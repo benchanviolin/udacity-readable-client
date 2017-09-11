@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Timestamp from 'react-timestamp'
 import { Link } from 'react-router-dom'
 import { getComment } from '../actions'
-import { Card, CardBlock, CardSubtitle, CardText, Button } from 'reactstrap';
+import { Card, CardBlock, CardSubtitle, CardText, Button } from 'reactstrap'
 import '../css/Comment.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
 import * as ToSeconds from '../utils/ToSeconds'

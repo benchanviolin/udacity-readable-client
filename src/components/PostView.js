@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import '../css/Post.css'
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap'
 import Post from './Post'
 import Comment from './Comment'
 import { getPostViewVisible } from '../actions'

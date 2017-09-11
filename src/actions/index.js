@@ -88,3 +88,12 @@ export function getComment (comment) {
     comment
   }
 }
+
+export const GET_COMMENTVIEW_VISIBLE = 'GET_COMMENTVIEW_VISIBLE'
+
+export function getCommentViewVisible (visible) {
+  return {
+    type: GET_COMMENTVIEW_VISIBLE,
+    visible
+  }
+}
