@@ -21,11 +21,9 @@ class PostAdd extends Component {
       this.props.addPost(post);
       this.props.history.goBack();
     })
-    /*if (this.props.onCreateContact)
-      this.props.onCreateContact(values)*/
   }
   render() {
-    const { history, categories, category } = this.props;    
+    const { history, categories, category } = this.props;
 
     return (
       <form onSubmit={this.addPost}>
