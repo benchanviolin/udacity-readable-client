@@ -14,7 +14,7 @@ import {
   GET_COMMENTVIEW_VISIBLE,
   ADD_COMMENT,
   DELETE_COMMENT
-} from '../actions'
+} from '../actions/types'
 
 const initialCollapsedState = true;
 
