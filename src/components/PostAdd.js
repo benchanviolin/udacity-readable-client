@@ -7,6 +7,7 @@ import '../css/Post.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
 import serializeForm from 'form-serialize'
 import { default as UUID } from 'node-uuid'
+import * as SimpleFormValidator from '../utils/SimpleFormValidator'
 
 class PostAdd extends Component {
   static propTypes = {
@@ -17,10 +18,17 @@ class PostAdd extends Component {
     const values = serializeForm(e.target, { hash: true });
     const id = UUID.v4();
     const timestamp = Date.now();
-    ReadableAPI.addPost(id, timestamp, values.postTitle, values.postBody, values.postAuthor, values.postCategory).then(post => {
-      this.props.addPost(post);
-      this.props.history.goBack();
-    })
+
+    if (SimpleFormValidator.validateText(values.postTitle, 'Please enter a title.', 'postTitle')
+        && SimpleFormValidator.validateText(values.postBody, 'Please enter a body.', 'postBody')
+        && SimpleFormValidator.validateText(values.postAuthor, 'Please enter the author.', 'postAuthor')
+      )
+    {
+      ReadableAPI.addPost(id, timestamp, values.postTitle, values.postBody, values.postAuthor, values.postCategory).then(post => {
+        this.props.addPost(post);
+        this.props.history.goBack();
+      });
+    }
   }
   render() {
     const { history, categories, category } = this.props;

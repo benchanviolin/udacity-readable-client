@@ -6,6 +6,7 @@ import { Card, CardBlock, CardTitle, CardText, Button } from 'reactstrap'
 import '../css/Post.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
 import serializeForm from 'form-serialize'
+import * as SimpleFormValidator from '../utils/SimpleFormValidator'
 
 class Post extends Component {
   static propTypes = {
@@ -15,12 +16,16 @@ class Post extends Component {
   saveChanges = e => {
     e.preventDefault();
     const values = serializeForm(e.target, { hash: true });
-    ReadableAPI.editPost(this.props.id, values.postTitle, values.postBody).then(post => {
-      this.props.setPost(post);
-      this.props.history.goBack();
-    })
-    /*if (this.props.onCreateContact)
-      this.props.onCreateContact(values)*/
+
+    if (SimpleFormValidator.validateText(values.postTitle, 'Please enter a title.', 'postTitle')
+        && SimpleFormValidator.validateText(values.postBody, 'Please enter a body.', 'postBody')
+      )
+    {
+      ReadableAPI.editPost(this.props.id, values.postTitle, values.postBody).then(post => {
+        this.props.setPost(post);
+        this.props.history.goBack();
+      })
+    }
   }
   render() {
     const { history } = this.props;

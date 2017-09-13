@@ -6,6 +6,7 @@ import { Card, CardBlock, CardText, Button } from 'reactstrap';
 import '../css/Comment.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
 import serializeForm from 'form-serialize'
+import * as SimpleFormValidator from '../utils/SimpleFormValidator'
 
 class Comment extends Component {
   static propTypes = {
@@ -16,12 +17,15 @@ class Comment extends Component {
     e.preventDefault();
     const values = serializeForm(e.target, { hash: true });
     const timestamp = Date.now();
-    ReadableAPI.editComment(this.props.id, timestamp, values.commentBody).then(comment => {
-      this.props.setComment(comment);
-      this.props.history.goBack();
-    })
-    /*if (this.props.onCreateContact)
-      this.props.onCreateContact(values)*/
+
+    if (SimpleFormValidator.validateText(values.commentBody, 'Please enter a body.', 'commentBody')        
+      )
+    {
+      ReadableAPI.editComment(this.props.id, timestamp, values.commentBody).then(comment => {
+        this.props.setComment(comment);
+        this.props.history.goBack();
+      })
+    }
   }
   render() {
     const { history } = this.props;

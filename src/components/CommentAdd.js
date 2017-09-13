@@ -7,6 +7,7 @@ import '../css/Comment.css';
 import * as ReadableAPI from '../utils/ReadableAPI'
 import serializeForm from 'form-serialize'
 import { default as UUID } from 'node-uuid'
+import * as SimpleFormValidator from '../utils/SimpleFormValidator'
 
 class CommentAdd extends Component {
   static propTypes = {
@@ -18,15 +19,19 @@ class CommentAdd extends Component {
     const values = serializeForm(e.target, { hash: true });
     const id = UUID.v4();
     const timestamp = Date.now();
-    ReadableAPI.addComment(id, timestamp, values.commentBody, values.commentAuthor, this.props.parentId).then(comment => {
-      this.props.addComment(comment);
-      this.props.history.goBack();
-    })
-    /*if (this.props.onCreateContact)
-      this.props.onCreateContact(values)*/
+
+    if (SimpleFormValidator.validateText(values.commentAuthor, 'Please enter the author.', 'commentAuthor')
+        && SimpleFormValidator.validateText(values.commentBody, 'Please enter a body.', 'commentBody')        
+      )
+    {
+      ReadableAPI.addComment(id, timestamp, values.commentBody, values.commentAuthor, this.props.parentId).then(comment => {
+        this.props.addComment(comment);
+        this.props.history.goBack();
+      })
+    }
   }
   render() {
-    const { history } = this.props;    
+    const { history } = this.props;
 
     return (
       <form onSubmit={this.addComment}>
