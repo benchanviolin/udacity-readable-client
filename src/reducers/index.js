@@ -149,7 +149,7 @@ function comments (state = initialCommentsState, action) {
         byPostId: {
           ...state.byPostId,
           [action.parentId]: {
-            rows: state.byPostId[action.comment.parentId].rows.concat([ action.comment ])
+            rows: state.byPostId && state.byPostId[action.comment.parentId] && state.byPostId[action.comment.parentId].rows ? state.byPostId[action.comment.parentId].rows.concat([ action.comment ]) : [ action.comment ]
           }
         }
       }
