@@ -57,8 +57,8 @@ You can do the following with a **comment**:
 
 **Comments** are only visible when their parent **post** is also visible.  Deleting a **post** will hide all associated **comments**.
 
-#### Special Note
+### Special Note
 To see all data points for **posts** and **comments**, refer to [ReadableAPI.js](utils/ReadableAPI.js) where API calls are sent to and received from the API server.
 
-#### Known Issues
+### Known Issues
 Some of the code can be refactored into more concise logic, but for the purposes of this project I've decided to leave it the way it is for future reference.  But for all future React/Redux projects, I plan to use the more concise logic that was so generously explained to me by the Udacity reviewer.
