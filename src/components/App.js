@@ -34,12 +34,20 @@ class App extends Component {
               <Route key={key} exact path={'/' + category.path} component={CategoryView} />
             ))
           )}
-          <Route exact path="/:category/:postId" component={PostView} />
-          <Route exact path="/:category/:postId/edit" component={PostViewEdit} />
-          <Route exact path="/addpost" component={PostViewAdd} />
-          <Route exact path="/:category/addpost" component={PostViewAdd} />
-          <Route exact path="/:category/:postId/comment/:commentId/edit" component={CommentViewEdit} />
-          <Route exact path="/:category/:postId/addcomment" component={CommentViewAdd} />
+          <Route path="/:category/:postId">
+            <div>
+              <Route exact path="/:category/:postId" component={PostView} />
+              <Route exact path="/:category/:postId/edit" component={PostViewEdit} />
+              <Route exact path="/:category/:postId/comment/:commentId/edit" component={CommentViewEdit} />
+              <Route exact path="/:category/:postId/addcomment" component={CommentViewAdd} />
+            </div>
+          </Route>
+          <Route path="/addpost">
+            <div>
+              <Route exact path="/addpost" component={PostViewAdd} />
+              <Route exact path="/:category/addpost" component={PostViewAdd} />
+            </div>
+          </Route>
         </div>
       </BrowserRouter>
     );
