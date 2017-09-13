@@ -13,7 +13,8 @@ import {
   GET_COMMENT,
   GET_COMMENTVIEW_VISIBLE,
   ADD_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  GET_PAGE404_VISIBLE
 } from '../actions/types'
 
 const initialCollapsedState = true;
@@ -179,6 +180,17 @@ function commentViewVisible (state = initialCommentViewVisibleState, action) {
   }
 }
 
+const initialPage404VisibleState = false;
+
+function page404Visible (state = initialPage404VisibleState, action) {
+  switch (action.type) {
+    case GET_PAGE404_VISIBLE :
+      return action.visible;
+    default :
+      return state;
+  }
+}
+
 export default combineReducers({
   collapsed,
   postViewVisible,
@@ -186,5 +198,6 @@ export default combineReducers({
   categories,
   posts,
   comments,
-  commentViewVisible
+  commentViewVisible,
+  page404Visible
 })

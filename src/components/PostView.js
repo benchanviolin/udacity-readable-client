@@ -7,6 +7,7 @@ import { Container, Row, Col, Button } from 'reactstrap'
 import Post from './Post'
 import Comment from './Comment'
 import { getPostViewVisible } from '../actions'
+import Page404 from './Page404'
 
 class PostView extends Component {
   static PropTypes = {
@@ -33,8 +34,6 @@ class PostView extends Component {
       if (currentPost && currentPost.length > 0) {
         data = currentPost[0];
         readyToRender = true;
-      } else {
-        this.props.history.goBack();
       }
     }
 

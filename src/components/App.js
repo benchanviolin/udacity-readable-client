@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import '../css/App.css'
 import * as ReadableAPI from '../utils/ReadableAPI'
@@ -13,6 +13,7 @@ import PostViewAdd from '../components/PostViewAdd'
 import CommentViewEdit from '../components/CommentViewEdit'
 import CommentViewAdd from '../components/CommentViewAdd'
 import Filter from '../components/Filter'
+import Page404 from '../components/Page404'
 
 class App extends Component {
   componentDidMount() {
@@ -25,40 +26,40 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Menu />
-          {!this.props.postViewVisible && !this.props.commentViewVisible && (
+          {!this.props.postViewVisible && !this.props.commentViewVisible && !this.props.page404Visible && (
             <Filter />
           )}
-          <Route exact path="/" component={Root} />
-          {this.props.categories && this.props.categories.rows && (
-            this.props.categories.rows.map((category, key) => (
-              <Route key={key} exact path={'/' + category.path} component={CategoryView} />
-            ))
-          )}
-          <Route path="/:category/:postId">
-            <div>
-              <Route exact path="/:category/:postId" component={PostView} />
-              <Route exact path="/:category/:postId/edit" component={PostViewEdit} />
-              <Route exact path="/:category/:postId/comment/:commentId/edit" component={CommentViewEdit} />
-              <Route exact path="/:category/:postId/addcomment" component={CommentViewAdd} />
-            </div>
-          </Route>
-          <Route path="/addpost">
-            <div>
-              <Route exact path="/addpost" component={PostViewAdd} />
-              <Route exact path="/:category/addpost" component={PostViewAdd} />
-            </div>
-          </Route>
+          <Switch>
+            <Route exact path="/" component={Root} />
+            {this.props.categories && this.props.categories.rows && (
+              this.props.categories.rows.map((category, key) => (
+                <Route key={key} exact path={'/' + category.path} component={CategoryView} />
+              ))
+            )}
+            <Route exact path="/addpost" component={PostViewAdd} />
+            <Route exact path="/:category/addpost" component={PostViewAdd} />
+            <Route path="/:category/:postId">
+              <div>
+                <Route exact path="/:category/:postId" component={PostView} />
+                <Route exact path="/:category/:postId/edit" component={PostViewEdit} />
+                <Route exact path="/:category/:postId/comment/:commentId/edit" component={CommentViewEdit} />
+                <Route exact path="/:category/:postId/addcomment" component={CommentViewAdd} />
+              </div>
+            </Route>
+            <Route component={Page404}/>
+          </Switch>
         </div>
       </BrowserRouter>
     );
   }
 }
 
-function mapStateToProps ({ categories, postViewVisible, commentViewVisible }) {
+function mapStateToProps ({ categories, postViewVisible, commentViewVisible, page404Visible }) {
   return {
     categories,
     postViewVisible,
-    commentViewVisible
+    commentViewVisible,
+    page404Visible
   }
 }
 

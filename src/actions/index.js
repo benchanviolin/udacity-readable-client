@@ -92,3 +92,10 @@ export function addComment (comment) {
     comment
   }
 }
+
+export function getPage404Visible (visible) {
+  return {
+    type: types.GET_PAGE404_VISIBLE,
+    visible
+  }
+}
